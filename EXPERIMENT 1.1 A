@@ -1,8 +1,12 @@
-DDL COMMANDS-A
+                                 EXPERIMENT NO: 1.1 DDL COMMANDS
+                                 *******************************
 
-1.create table EMPLOYEE(emp_id int,emp_name varchar(20),city varchar(20),emp_DOB date ,emp_adhno int);
+
+DDL COMMANDS-QUESTION????
+
+MYSQL>create table EMPLOYEE(emp_id int,emp_name varchar(20),city varchar(20),emp_DOB date ,emp_adhno int);
 Query OK, 0 rows affected (0.20 sec)
-desc EMPLOYEE;
+MYSQL>desc EMPLOYEE;
 +-----------+-------------+------+-----+---------+-------+
 | Field     | Type        | Null | Key | Default | Extra |
 +-----------+-------------+------+-----+---------+-------+
@@ -108,5 +112,6 @@ Query OK, 0 rows affected (0.28 sec)
 
  
 
-
+//ADD QUESTION 
+//WRITE MYSQL> BEFORE EACH QUERY
 
