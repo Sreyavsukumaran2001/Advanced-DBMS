@@ -91,3 +91,22 @@ Query OK, 0 rows affected (0.20 sec)
 | price | decimal(3,2) | YES  |     | 0.00    |       |
 +-------+--------------+------+-----+---------+-------+
 3 rows in set (0.00 sec)
+
+create table INVOICE1_MASTER(inv_id int primary key,cus_id int,inv_date date,foreign key(cus_id) references customer(cus_id));
+Query OK, 0 rows affected (0.28 sec)
+
+ desc INVOICE1_MASTER ;
+ 
+  +----------+---------+------+-----+---------+-------+
+| Field    | Type    | Null | Key | Default | Extra |
++----------+---------+------+-----+---------+-------+
+| inv_id   | int(11) | NO   | PRI | NULL    |       |
+| cus_id   | int(11) | YES  | MUL | NULL    |       |
+| inv_date | date    | YES  |     | NULL    |       |
++----------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+ 
+
+
+
