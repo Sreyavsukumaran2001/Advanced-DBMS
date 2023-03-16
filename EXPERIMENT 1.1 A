@@ -247,9 +247,24 @@ mysql> DESC PERSON;
 5 rows in set (0.00 sec)
 
 7. Delete the table EMPLOYEE_DUP.
+
+mysql> show tables;
++---------------+
+| Tables_in_KSB |
++---------------+
+| EMPLOYEE      |
+| EMPLOYEE_DUP  |
+| STUDENT       |
+| book          |
+| customer      |
+| employee      |
+| order1        |
+| person        |
++---------------+
+8 rows in set (0.00 sec)
+
 mysql> Drop  table EMPLOYEE_DUP;
 Query OK, 0 rows affected (0.16 sec)
-
 mysql> desc EMPLOYEE_DUP;
 ERROR 1146 (42S02): Table 'KSB.EMPLOYEE_DUP' doesn't exist
 
