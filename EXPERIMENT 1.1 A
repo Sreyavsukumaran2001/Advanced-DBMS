@@ -1,4 +1,4 @@
-                                 EXPERIMENT NO: 1.1 DDL COMMANDS
+                                 EXPERIMENT NO: 1.1 DDL COMMANDS-A
                                  *******************************
 
 1.Create a table EMPLOYEE have the following fields (emp_id, name,city,dob,adhar_no)
@@ -136,6 +136,27 @@ mysql> desc INVOICE1_MASTER;
 +----------+---------+------+-----+---------+-------+
 3 rows in set (0.00 sec)
 
+  
 
+                           EXPERIMENT NO: 1.1DDL COMMANDS- ALTER & DROP-B
+                                 *******************************
+ 1. Add a column ‘SSN’ at the first position in the table EMPLOYEE
+ mysql> alter table EMPLOYEE add ssn int first;
+Query OK, 0 rows affected (0.36 sec)
+Records: 0  Duplicates: 0  Warnings: 0
 
+mysql> desc EMPLOYEE;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| ssn       | int(11)     | YES  |     | NULL    |       |
+| emp_id    | int(11)     | YES  |     | NULL    |       |
+| emp_name  | varchar(20) | YES  |     | NULL    |       |
+| city      | varchar(20) | YES  |     | NULL    |       |
+| emp_DOB   | date        | YES  |     | NULL    |       |
+| emp_adhno | int(11)     | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
 
+2. Change the data type of the column ‘DOB’  in year the table EMPLOYEE  
+ 
