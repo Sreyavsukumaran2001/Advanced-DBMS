@@ -1,8 +1,7 @@
                                  EXPERIMENT NO: 1.1 DDL COMMANDS
                                  *******************************
 
-
-DDL COMMANDS-QUESTION????
+1.Create a table EMPLOYEE have the following fields (emp_id, name,city,dob,adhar_no)
 
 MYSQL>create table EMPLOYEE(emp_id int,emp_name varchar(20),city varchar(20),emp_DOB date ,emp_adhno int);
 Query OK, 0 rows affected (0.20 sec)
@@ -18,7 +17,12 @@ MYSQL>desc EMPLOYEE;
 +-----------+-------------+------+-----+---------+-------+
 5 rows in set (0.01 sec)
 
-2.create table STUDENT(roll_no int primary key,name varchar(20)not null,gender varchar(20) default'm',address varchar(20),check(Age<100));
+ 2 .Create a table STUDENT have the fields(roll_no, name, age, address, gender)and add following constraints on it.
+ Roll_no – Primary key
+               Name – does not allow null values
+               Age- must be in between (0-99), does not allow null values
+               Gender- default value is ‘m’
+MYSQL>create table STUDENT(roll_no int primary key,name varchar(20)not null,gender varchar(20) default'm',address varchar(20),check(Age<100));
 Query OK, 0 rows affected (0.19 sec)
 desc STUDENT;
 +---------+-------------+------+-----+---------+-------+
@@ -31,8 +35,8 @@ desc STUDENT;
 +---------+-------------+------+-----+---------+-------+
 4 rows in set (0.00 sec)
 
-
-3.create temporary table STUDENT1  select*from STUDENT;
+3.Create a temporary table STUDENT1 of STUDENT relation.
+MYSQL>create temporary table STUDENT1  select*from STUDENT;
 Query OK, 0 rows affected (0.02 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
@@ -47,7 +51,9 @@ desc STUDENT1;
 +---------+-------------+------+-----+---------+-------+
 4 rows in set (0.00 sec)
 
-4.CREATE TABLE IF NOT EXISTS EMPLOYEE_DUP SELECT * FROM EMPLOYEE;
+4. Create a duplicate table of EMPLOYEE.
+
+MYSQL>CREATE TABLE IF NOT EXISTS EMPLOYEE_DUP SELECT * FROM EMPLOYEE;
 Query OK, 0 rows affected (0.19 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
@@ -64,12 +70,19 @@ Records: 0  Duplicates: 0  Warnings: 0
 5 rows in set (0.00 sec)
 
 
-5.create database INVOICE1;
+5.  Create an INVOICE database and having following tables.
+
+                      Customer(id, name, address, city, ph_no)
+                      Product(pid,  pname, price (default 0))
+                      Invoice_master(inv_id, cust_id(FK), inv_date)
+                      Invoice_item(inv_id (FK),  pid(FK), quantity)
+   
+MYSQL>create database INVOICE1;
 Query OK, 1 row affected (0.00 sec)
 use  INVOICE1;
 Database changed
 
-create table customer(cus_id int primary key,cus_address varchar(20),cus_city varchar(20),cus_phno varchar(20));
+MYSQL>create table customer(cus_id int primary key,cus_address varchar(20),cus_city varchar(20),cus_phno varchar(20));
 Query OK, 0 rows affected (0.19 sec)
 
  desc customer;
@@ -83,10 +96,10 @@ Query OK, 0 rows affected (0.19 sec)
 +-------------+-------------+------+-----+---------+-------+
 4 rows in set (0.00 sec)
 
- create table Product(p_id int primary key,pname varchar(20),price decimal(3,2) default '0');
+MYSQL> create table Product(p_id int primary key,pname varchar(20),price decimal(3,2) default '0');
 Query OK, 0 rows affected (0.20 sec)
 
- desc Product;
+MYSQL> desc Product;
 +-------+--------------+------+-----+---------+-------+
 | Field | Type         | Null | Key | Default | Extra |
 +-------+--------------+------+-----+---------+-------+
@@ -96,10 +109,10 @@ Query OK, 0 rows affected (0.20 sec)
 +-------+--------------+------+-----+---------+-------+
 3 rows in set (0.00 sec)
 
-create table INVOICE1_MASTER(inv_id int primary key,cus_id int,inv_date date,foreign key(cus_id) references customer(cus_id));
+MYSQL>create table INVOICE1_MASTER(inv_id int primary key,cus_id int,inv_date date,foreign key(cus_id) references customer(cus_id));
 Query OK, 0 rows affected (0.28 sec)
 
- desc INVOICE1_MASTER ;
+MYSQL> desc INVOICE1_MASTER ;
  
   +----------+---------+------+-----+---------+-------+
 | Field    | Type    | Null | Key | Default | Extra |
@@ -110,8 +123,19 @@ Query OK, 0 rows affected (0.28 sec)
 +----------+---------+------+-----+---------+-------+
 3 rows in set (0.00 sec)
 
- 
+mysql> create table INVOICE1_ITEM(inv_id int,p_id int,quantity int,foreign key(inv_id) references INVOICE1_MASTER(inv_id),foreign key(p_irences Product(p_id));
+Query OK, 0 rows affected (0.38 sec)
 
-//ADD QUESTION 
-//WRITE MYSQL> BEFORE EACH QUERY
+mysql> desc INVOICE1_MASTER;
++----------+---------+------+-----+---------+-------+
+| Field    | Type    | Null | Key | Default | Extra |
++----------+---------+------+-----+---------+-------+
+| inv_id   | int(11) | NO   | PRI | NULL    |       |
+| cus_id   | int(11) | YES  | MUL | NULL    |       |
+| inv_date | date    | YES  |     | NULL    |       |
++----------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
+
 
