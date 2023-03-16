@@ -1,0 +1,56 @@
+                                        EXPERIMENT NO:1.2 DML COMMANDS 
+                                   ****************************************
+   a) DML COMMANDS-INSERT
+ ****************************
+ 
+ 1.Insert values in EMPLOYEE table
+ 
+mysql> insert into EMPLOYEE values(001,"Tom","Trivandrum",2000,123458933);
+Query OK, 1 row affected (0.07 sec)
+mysql> insert into EMPLOYEE values(002,"Tintu","Kochi",2001,427386197); 
+Query OK, 1 row affected (0.03 sec)
+mysql> insert into EMPLOYEE values(003,"Manu","kannur",1999,451714619); 
+Query OK, 1 row affected (0.03 sec)
+mysql> insert into EMPLOYEE values(004,"Rani","kozhikode",1998,147146197);
+Query OK, 1 row affected (0.05 sec)
+mysql> insert into EMPLOYEE values(005,"Yadhu","kollam",2002,425678932); 
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from EMPLOYEE;  
++------+----------+------------+---------+-----------+
+| ssn  | emp_name | city       | emp_dob | emp_adhno |
++------+----------+------------+---------+-----------+
+|    1 | Tom      | Trivandrum |    2000 | 123458933 |
+|    4 | Rani     | kozhikode  |    1998 | 147146197 |
+|    5 | Yadhu    | kollam     |    2002 | 425678932 |
+|    2 | Tintu    | Kochi      |    2001 | 427386197 |
+|    3 | Manu     | kannur     |    1999 | 451714619 |
++------+----------+------------+---------+-----------+
+5 rows in set (0.00 sec)
+
+
+2.Insert values in STUDENT table.
+mysql> insert into STUDENT values(1,"Aswin","male","Mellaparambil",22);
+Query OK, 1 row affected (0.03 sec)
+insert into STUDENT values(2,"Manas","male","Thamarassery",21);
+Query OK, 1 row affected (0.02 sec)
+mysql> insert into STUDENT values (3,"Kuttu","female","Wayanad",22);
+Query OK, 1 row affected (0.04 sec)
+ insert into STUDENT values(4,"Sreya","female","Thrissur",21);
+Query OK, 1 row affected (0.04 sec)
+mysql> insert into STUDENT values(5,"Vishnu","male","Thazhikode",22);
+Query OK, 1 row affected (0.04 sec)
+mysql> insert into STUDENT values(6,"Minhaj","male","Arikode",24);
+Query OK, 1 row affected (0.04 sec)
+mysql> select * from STUDENT;
++---------+--------+--------+---------------+-----+
+| roll_no | name   | gender | address       | AGE |
++---------+--------+--------+---------------+-----+
+|       1 | Aswin  | male   | Mellaparambil |  22 |
+|       2 | Manas  | male   | Thamarassery  |  21 |
+|       3 | Kuttu  | female | Wayanad       |  22 |
+|       4 | Sreya  | female | Thrissur      |  21 |
+|       5 | Vishnu | male   | Thazhikode    |  22 |
+|       6 | Minhaj | male   | Arikode       |  24 |
++---------+--------+--------+---------------+-----+
+6 rows in set (0.00 sec)
