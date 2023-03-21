@@ -146,7 +146,7 @@ mysql> desc INVOICE1_MASTER;
 Query OK, 0 rows affected (0.36 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
-mysql> desc EMPLOYEE;
+mysql> desc EMPLOYEE; 
 +-----------+-------------+------+-----+---------+-------+
 | Field     | Type        | Null | Key | Default | Extra |
 +-----------+-------------+------+-----+---------+-------+
