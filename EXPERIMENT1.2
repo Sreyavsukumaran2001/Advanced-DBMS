@@ -211,18 +211,373 @@ mysql> select * from INVOICE1_MASTER;
 
 INVOICE1_ITEM
 -------------
-
-mysql> DESC INVOICE1_MASTER;
+mysql> DESC INVOICE1_ITEM;
 +----------+---------+------+-----+---------+-------+
 | Field    | Type    | Null | Key | Default | Extra |
 +----------+---------+------+-----+---------+-------+
-| inv_id   | int(11) | NO   | PRI | NULL    |       |
-| cus_id   | int(11) | YES  | MUL | NULL    |       |
-| inv_date | date    | YES  |     | NULL    |       |
+| inv_id   | int(11) | YES  | MUL | NULL    |       |
+| p_id     | int(11) | YES  | MUL | NULL    |       |
+| quantity | int(11) | YES  |     | NULL    |       |
 +----------+---------+------+-----+---------+-------+
 3 rows in set (0.00 sec)
+mysql> insert into INVOICE1_ITEM VALUES(001,001,2);
+Query OK, 1 row affected (0.04 sec)
+mysql> insert into INVOICE1_ITEM VALUES(101,002,1);
+Query OK, 1 row affected (0.04 sec)
+mysql> insert into INVOICE1_ITEM VALUES(102,005,1);
+Query OK, 1 row affected (0.04 sec)
+mysql> insert into INVOICE1_ITEM VALUES(102,004,2);
+Query OK, 1 row affected (0.04 sec)
+mysql> insert into INVOICE1_ITEM VALUES(103,006,1);
+Query OK, 1 row affected (0.04 sec)
+mysql> insert into INVOICE1_ITEM VALUES(104,001,5);
+Query OK, 1 row affected (0.05 sec)
+mysql> insert into INVOICE1_ITEM VALUES(104,007,2);
+Query OK, 1 row affected (0.05 sec)
+mysql> insert into INVOICE1_ITEM VALUES(106,002,1);
+Query OK, 1 row affected (0.03 sec)
+mysql> insert into INVOICE1_ITEM VALUES(106,004,1);
+Query OK, 1 row affected (0.05 sec)
+mysql> insert into INVOICE1_ITEM VALUES(106,003,1);
+Query OK, 1 row affected (0.04 sec)
+mysql> insert into INVOICE1_ITEM VALUES(107,006,1);
+Query OK, 1 row affected (0.03 sec)
 
+mysql> SELECT * FROM INVOICE1_ITEM;
++--------+------+----------+
+| inv_id | p_id | quantity |
++--------+------+----------+
+|      1 |    1 |        2 |
+|    101 |    2 |        1 |
+|    102 |    5 |        1 |
+|    102 |    4 |        2 |
+|    103 |    6 |        1 |
+|    104 |    1 |        5 |
+|    104 |    7 |        2 |
+|    106 |    2 |        1 |
+|    106 |    4 |        1 |
+|    106 |    3 |        1 |
+|    107 |    6 |        1 |
++--------+------+----------+
+11 rows in set (0.00 sec)
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+   b)DML COMMANDS- UPDATE
+ ***************************
+ 
+1. Update the price of a particular product. 
+mysql> SELECT * FROM Product;
++------+------------+-------+
+| p_id | pname      | price |
++------+------------+-------+
+|    1 | Pen        |    30 |
+|    2 | Bag        |   950 |
+|    3 | Umberalla  |   450 |
+|    4 | Bottle     |   150 |
+|    5 | Chappal    |   320 |
+|    6 | Tiffin box |   120 |
+|    7 | Pencil box |   100 |
++------+------------+-------+
+7 rows in set (0.00 sec)
 
+mysql>  UPDATE Product set price=390 WHERE p_id=3;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
 
+mysql> SELECT * FROM Product;
++------+------------+-------+
+| p_id | pname      | price |
++------+------------+-------+
+|    1 | Pen        |    30 |
+|    2 | Bag        |   950 |
+|    3 | Umberalla  |   390 |
+|    4 | Bottle     |   150 |
+|    5 | Chappal    |   320 |
+|    6 | Tiffin box |   120 |
+|    7 | Pencil box |   100 |
++------+------------+-------+
+7 rows in set (0.00 sec)
+-----------------------------------------------------------------------------------------------------------------------------------
 
+2.Change the name of city ‘kozhikode’ to ‘calicut’ in the customer table
+
+mysql> select * from customer;
++--------+----------+--------------------+--------------+------------+
+| cus_id | cus_name | cus_address        | cus_city     | cus_phno   |
++--------+----------+--------------------+--------------+------------+
+|      1 | Anjana   | Pazhikadavath      | wayanad      | 7034126856 |
+|      2 | Sreya    | Vadassery          | Thrissur     | 7034657885 |
+|      3 | Nileena  | Lakshimi bhavan    | Irutty       | 9747565424 |
+|      4 | salha    | Vellipurath        | Kunnamagalam | 9747565427 |
+|      5 | Neenu    | Thekkyapulliyil    | Pallissery   | 9747565727 |
+|      6 | Amritha  | Kezhakyeatheruvath | Kozhikode    | 2847565727 |
+|    107 | Anjali   | Manayil            | Kunnamkulam  | NULL       |
++--------+----------+--------------------+--------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> update customer set cus_city="Calicut" where cus_city="Kozhikode";
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+mysql> select * from customer;
++--------+----------+--------------------+--------------+------------+
+| cus_id | cus_name | cus_address        | cus_city     | cus_phno   |
++--------+----------+--------------------+--------------+------------+
+|      1 | Anjana   | Pazhikadavath      | wayanad      | 7034126856 |
+|      2 | Sreya    | Vadassery          | Thrissur     | 7034657885 |
+|      3 | Nileena  | Lakshimi bhavan    | Irutty       | 9747565424 |
+|      4 | salha    | Vellipurath        | Kunnamagalam | 9747565427 |
+|      5 | Neenu    | Thekkyapulliyil    | Pallissery   | 9747565727 |
+|      6 | Amritha  | Kezhakyeatheruvath | Calicut      | 2847565727 |
+|    107 | Anjali   | Manayil            | Kunnamkulam  | NULL       |
++--------+----------+--------------------+--------------+------------+
+7 rows in set (0.00 sec)
+--------------------------------------------------------------------------------------------------------------------
+ 3.Update all prices with 2% of its original price.
+ 
+mysql> update Product set price=price+(price*2/100);
+Query OK, 7 rows affected (0.05 sec)
+Rows matched: 7  Changed: 7  Warnings: 0
+mysql>  select * from Product;
++------+------------+-------+
+| p_id | pname      | price |
++------+------------+-------+
+|    1 | Pen        |    31 |
+|    2 | Bag        |   969 |
+|    3 | Umberalla  |   398 |
+|    4 | Bottle     |   153 |
+|    5 | Chappal    |   326 |
+|    6 | Tiffin box |   122 |
+|    7 | Pencil box |   102 |
++------+------------+-------+
+7 rows in set (0.00 sec)
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+4.Change the address, city, phone number of a particular customer. 
+mysql> select * from customer;
++--------+----------+--------------------+--------------+------------+
+| cus_id | cus_name | cus_address        | cus_city     | cus_phno   |
++--------+----------+--------------------+--------------+------------+
+|      1 | Anjana   | Pazhikadavath      | wayanad      | 7034126856 |
+|      2 | Sreya    | Vadassery          | Thrissur     | 7034657885 |
+|      3 | Nileena  | Lakshimi bhavan    | Irutty       | 9747565424 |
+|      4 | salha    | Vellipurath        | Kunnamagalam | 9747565427 |
+|      5 | Neenu    | Thekkyapulliyil    | Pallissery   | 9747565727 |
+|      6 | Amritha  | Kezhakyeatheruvath | Calicut      | 2847565727 |
+|    107 | Anjali   | Manayil            | Kunnamkulam  | NULL       |
++--------+----------+--------------------+--------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> update customer set cus_address="kayallath house",cus_phno=8247565412,cus_city="Kannur"where cus_id=003;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from customer;  
++--------+----------+--------------------+--------------+------------+
+| cus_id | cus_name | cus_address        | cus_city     | cus_phno   |
++--------+----------+--------------------+--------------+------------+
+|      1 | Anjana   | Pazhikadavath      | wayanad      | 7034126856 |
+|      2 | Sreya    | Vadassery          | Thrissur     | 7034657885 |
+|      3 | Nileena  | kayallath house    | Kannur       | 8247565412 |
+|      4 | salha    | Vellipurath        | Kunnamagalam | 9747565427 |
+|      5 | Neenu    | Thekkyapulliyil    | Pallissery   | 9747565727 |
+|      6 | Amritha  | Kezhakyeatheruvath | Calicut      | 2847565727 |
+|    107 | Anjali   | Manayil            | Kunnamkulam  | NULL       |
++--------+----------+--------------------+--------------+------------+
+7 rows in set (0.00 sec)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+ 5. Change the quantity of a purchased product of inv_id ‘106’
+ 
+mysql> SELECT * FROM  INVOICE1_ITEM;
++--------+------+----------+
+| inv_id | p_id | quantity |
++--------+------+----------+
+|      1 |    1 |        2 |
+|    101 |    2 |        1 |
+|    102 |    5 |        1 |
+|    102 |    4 |        2 |
+|    103 |    6 |        1 |
+|    104 |    1 |        5 |
+|    104 |    7 |        2 |
+|    106 |    2 |        1 |
+|    106 |    4 |        1 |
+|    106 |    3 |        1 |
+|    107 |    6 |        1 |
++--------+------+----------+
+mysql> update INVOICE1_ITEM set quantity=3 WHERE inv_id=106;
+Query OK, 3 rows affected (0.05 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+//////////
+update INVOICE1_ITEM set quantity=3 WHERE inv_id=103;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+mysql> SELECT * FROM  INVOICE1_ITEM;
++--------+------+----------+
+| inv_id | p_id | quantity |
++--------+------+----------+
+|      1 |    1 |        2 |
+|    101 |    2 |        1 |
+|    102 |    5 |        1 |
+|    102 |    4 |        2 |
+|    103 |    6 |        3 |
+|    104 |    1 |        5 |
+|    104 |    7 |        2 |
+|    106 |    2 |        3 |
+|    106 |    4 |        3 |
+|    106 |    3 |        3 |
+|    107 |    6 |        1 |
++--------+------+----------+
+11 rows in set (0.00 sec)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  c) DML COMMAND- DELETE
+*****************************
+1. Delete the record of customer id ‘10001’
+
+mysql> select * from customer;
++--------+----------+--------------------+--------------+------------+
+| cus_id | cus_name | cus_address        | cus_city     | cus_phno   |
++--------+----------+--------------------+--------------+------------+
+|      1 | Anjana   | Pazhikadavath      | wayanad      | 7034126856 |
+|      2 | Sreya    | Vadassery          | Thrissur     | 7034657885 |
+|      3 | Nileena  | kayallath house    | Kannur       | 8247565412 |
+|      4 | salha    | Vellipurath        | Kunnamagalam | 9747565427 |
+|      5 | Neenu    | Thekkyapulliyil    | Pallissery   | 9747565727 |
+|      6 | Amritha  | Kezhakyeatheruvath | Calicut      | 2847565727 |
+|    107 | Anjali   | Manayil            | Kunnamkulam  | NULL       |
++--------+----------+--------------------+--------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> delete from customer where cus_id=107;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from customer;
++--------+----------+--------------------+--------------+------------+
+| cus_id | cus_name | cus_address        | cus_city     | cus_phno   |
++--------+----------+--------------------+--------------+------------+
+|      1 | Anjana   | Pazhikadavath      | wayanad      | 7034126856 |
+|      2 | Sreya    | Vadassery          | Thrissur     | 7034657885 |
+|      3 | Nileena  | kayallath house    | Kannur       | 8247565412 |
+|      4 | salha    | Vellipurath        | Kunnamagalam | 9747565427 |
+|      5 | Neenu    | Thekkyapulliyil    | Pallissery   | 9747565727 |
+|      6 | Amritha  | Kezhakyeatheruvath | Calicut      | 2847565727 |
++--------+----------+--------------------+--------------+------------+
+6 rows in set (0.00 sec)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Delete all purchase details of items its quantity less than 2. 
+mysql> select * from INVOICE1_ITEM;
++--------+------+----------+
+| inv_id | p_id | quantity |
++--------+------+----------+
+|      1 |    1 |        2 |
+|    101 |    2 |        1 |
+|    102 |    5 |        1 |
+|    102 |    4 |        2 |
+|    103 |    6 |        3 |
+|    104 |    1 |        5 |
+|    104 |    7 |        2 |
+|    106 |    2 |        3 |
+|    106 |    4 |        3 |
+|    106 |    3 |        3 |
+|    107 |    6 |        1 |
++--------+------+----------+
+11 rows in set (0.00 sec)
+
+mysql> DELETE FROM INVOICE1_ITEM WHERE quantity<2;
+Query OK, 3 rows affected (0.04 sec)
+
+mysql> select * from INVOICE1_ITEM;
++--------+------+----------+
+| inv_id | p_id | quantity |
++--------+------+----------+
+|      1 |    1 |        2 |
+|    102 |    4 |        2 |
+|    103 |    6 |        3 |
+|    104 |    1 |        5 |
+|    104 |    7 |        2 |
+|    106 |    2 |        3 |
+|    106 |    4 |        3 |
+|    106 |    3 |        3 |
++--------+------+----------+
+8 rows in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3. Delete the purchase details of product ‘pen’ in the in_id ‘101’. 
+mysql> select * from INVOICE1_ITEM;
++--------+------+----------+
+| inv_id | p_id | quantity |
++--------+------+----------+
+|      1 |    1 |        2 |
+|    102 |    4 |        2 |
+|    103 |    6 |        3 |
+|    104 |    1 |        5 |
+|    104 |    7 |        2 |
+|    106 |    2 |        3 |
+|    106 |    4 |        3 |
+|    106 |    3 |        3 |
++--------+------+----------+
+8 rows in set (0.00 sec)
+mysql> delete from INVOICE1_ITEM where inv_id=106 and p_id=003;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from INVOICE1_ITEM;
++--------+------+----------+
+| inv_id | p_id | quantity |
++--------+------+----------+
+|      1 |    1 |        2 |
+|    102 |    4 |        2 |
+|    103 |    6 |        3 |
+|    104 |    1 |        5 |
+|    104 |    7 |        2 |
+|    106 |    2 |        3 |
+|    106 |    4 |        3 |
++--------+------+----------+
+7 rows in set (0.00 sec)
+-------------------------------------------------------------------------------------------------------------------------------------------------------- 4. Delete details of employees who does not have phone number. 
+mysql> select * from customer;  
++--------+----------+--------------------+--------------+------------+
+| cus_id | cus_name | cus_address        | cus_city     | cus_phno   |
++--------+----------+--------------------+--------------+------------+
+|      1 | Anjana   | Pazhikadavath      | wayanad      | 7034126856 |
+|      2 | Sreya    | Vadassery          | Thrissur     | 7034657885 |
+|      3 | Nileena  | kayallath house    | Kannur       | 8247565412 |
+|      4 | salha    | Vellipurath        | Kunnamagalam | 9747565427 |
+|      5 | Neenu    | Thekkyapulliyil    | Pallissery   | 9747565727 |
+|      6 | Amritha  | Kezhakyeatheruvath | Calicut      | 2847565727 |
+|    107 | Anjali   | Manayil            | Kunnamkulam  | NULL       |
++--------+----------+--------------------+--------------+------------+
+mysql> delete from customer where cus_phno is null;
+Query OK, 0 rows affected (0.00 sec)
+mysql> select * from customer;
++--------+----------+--------------------+--------------+------------+
+| cus_id | cus_name | cus_address        | cus_city     | cus_phno   |
++--------+----------+--------------------+--------------+------------+
+|      1 | Anjana   | Pazhikadavath      | wayanad      | 7034126856 |
+|      2 | Sreya    | Vadassery          | Thrissur     | 7034657885 |
+|      3 | Nileena  | kayallath house    | Kannur       | 8247565412 |
+|      4 | salha    | Vellipurath        | Kunnamagalam | 9747565427 |
+|      5 | Neenu    | Thekkyapulliyil    | Pallissery   | 9747565727 |
+|      6 | Amritha  | Kezhakyeatheruvath | Calicut      | 2847565727 |
++--------+----------+--------------------+--------------+------------+
+6 rows in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+5. Delete all records from STUDENT table. 
+mysql> select * from STUDENT;
++---------+--------+--------+---------------+-----+
+| roll_no | name   | gender | address       | AGE |
++---------+--------+--------+---------------+-----+
+|       1 | Aswin  | male   | Mellaparambil |  22 |
+|       2 | Manas  | male   | Thamarassery  |  21 |
+|       3 | Kuttu  | female | Wayanad       |  22 |
+|       4 | Sreya  | female | Thrissur      |  21 |
+|       5 | Vishnu | male   | Thazhikode    |  22 |
+|       6 | Minhaj | male   | Arikode       |  24 |
+|       7 | nili   | female | kannur        |  24 |
++---------+--------+--------+---------------+-----+
+7 rows in set (0.00 sec)
+mysql> DELETE  from STUDENT;
+Query OK, 7 rows affected (0.04 sec)
+mysql> SELECT * from STUDENT;
+Empty set (0.00 sec)
+----------------------------------------------------------------------------------------------------------------------------------------------------------
