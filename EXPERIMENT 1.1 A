@@ -127,15 +127,16 @@ MYSQL> desc INVOICE1_MASTER ;
 mysql> create table INVOICE1_ITEM(inv_id int,p_id int,quantity int,foreign key(inv_id) references INVOICE1_MASTER(inv_id),foreign key(p_irences Product(p_id));
 Query OK, 0 rows affected (0.38 sec)
 
-mysql> desc INVOICE1_MASTER;
+mysql> DESC INVOICE1_ITEM;
 +----------+---------+------+-----+---------+-------+
 | Field    | Type    | Null | Key | Default | Extra |
 +----------+---------+------+-----+---------+-------+
-| inv_id   | int(11) | NO   | PRI | NULL    |       |
-| cus_id   | int(11) | YES  | MUL | NULL    |       |
-| inv_date | date    | YES  |     | NULL    |       |
+| inv_id   | int(11) | YES  | MUL | NULL    |       |
+| p_id     | int(11) | YES  | MUL | NULL    |       |
+| quantity | int(11) | YES  |     | NULL    |       |
 +----------+---------+------+-----+---------+-------+
-3 rows in set (0.00 sec)
+3 rows in set (0.01 sec)
+
 
   
 
