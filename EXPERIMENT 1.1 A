@@ -271,3 +271,4 @@ mysql> desc EMPLOYEE_DUP;
 ERROR 1146 (42S02): Table 'KSB.EMPLOYEE_DUP' doesn't exist
 
 //VERIFIED
+//VERIFIED
