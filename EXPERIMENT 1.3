@@ -133,16 +133,38 @@ A.Create two users user1, user2
        ->Give insert and select privilege to user 1 on customer table in the invoice database.
        ->Give update and delete privilege to user 2 on all tables in the invoice database.
        
-mysql> create USER 'USER1'@'localhost' identified by 'pass1';
-Query OK, 0 rows affected (0.05 sec)
-
-mysql> create USER 'USER2'@'localhost' identified by 'pass2';
+mysql> create USER 'USERS1'@'localhost' identified by 'user';
 Query OK, 0 rows affected (0.00 sec)
 
-mysql> grant insert,select on customer to 'USER1'@'localhost';
+mysql> create USER 'USERS2'@'localhost' identified by 'user1';
 Query OK, 0 rows affected (0.00 sec)
 
-mysql> grant delete,update on customer to 'USER2'@'localhost';
+mysql> grant insert,select on customer to 'USERS1'@'localhost';
 Query OK, 0 rows affected (0.00 sec)
 
- 
+mysql> grant delete,update on INVOICE1.* to 'USERS2'@'localhost';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants;
++-----------------------------------------------------------------------+
+| Grants for USERS1@localhost                                           |
++-----------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'USERS1'@'localhost'                            |
+| GRANT SELECT, INSERT ON `INVOICE1`.`customer` TO 'USERS1'@'localhost' |
++-----------------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> show grants;
++--------------------------------------------------------------+
+| Grants for USERS2@localhost                                  |
++--------------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'USERS2'@'localhost'                   |
+| GRANT UPDATE, DELETE ON `INVOICE1`.* TO 'USERS2'@'localhost' |
++--------------------------------------------------------------+
+2 rows in set (0.00 sec)
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  2. REVOKE
+     ->Remove delete privilege of user 2.
+     
+
