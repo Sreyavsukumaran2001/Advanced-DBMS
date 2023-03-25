@@ -93,6 +93,16 @@ mysql> SELECT * FROM INVOICE1_MASTER WHERE inv_date between '2022-11-12' and '20
 5 rows in set (0.01 sec)
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
+7. List the customer details who not live in ‘calicut’.
 
-
-
+mysql> select * from customer where cus_city!="Calicut";
++--------+----------+-----------------+--------------+------------+
+| cus_id | cus_name | cus_address     | cus_city     | cus_phno   |
++--------+----------+-----------------+--------------+------------+
+|      1 | Anjana   | Pazhikadavath   | wayanad      | 7034126856 |
+|      2 | Sreya    | Vadassery       | Thrissur     | 7034657885 |
+|      3 | Nileena  | kayallath house | Kannur       | 8247565412 |
+|      4 | salha    | Vellipurath     | Kunnamagalam | 9747565427 |
+|      5 | Neenu    | Thekkyapulliyil | Pallissery   | 9747565727 |
++--------+----------+-----------------+--------------+------------+
+5 rows in set (0.00 sec)
