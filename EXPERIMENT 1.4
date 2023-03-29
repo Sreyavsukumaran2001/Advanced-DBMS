@@ -94,6 +94,7 @@ mysql> SELECT * FROM INVOICE1_MASTER WHERE inv_date between '2022-11-12' and '20
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 7. List the customer details who not live in ‘calicut’.
+--------------------------------------------------------
 
 mysql> select * from customer where cus_city!="Calicut";
 +--------+----------+-----------------+--------------+------------+
@@ -106,3 +107,147 @@ mysql> select * from customer where cus_city!="Calicut";
 |      5 | Neenu    | Thekkyapulliyil | Pallissery   | 9747565727 |
 +--------+----------+-----------------+--------------+------------+
 5 rows in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+8.List the customers who have no phone number.
+----------------------------------------------
+
+mysql> select * from customer;
++--------+----------+--------------------+--------------+------------+
+| cus_id | cus_name | cus_address        | cus_city     | cus_phno   |
++--------+----------+--------------------+--------------+------------+
+|      1 | Anjana   | Pazhikadavath      | wayanad      | 7034126856 |
+|      2 | Sreya    | Vadassery          | Thrissur     | 7034657885 |
+|      3 | Nileena  | kayallath house    | Kannur       | 8247565412 |
+|      4 | salha    | Vellipurath        | Kunnamagalam | 9747565427 |
+|      5 | Neenu    | Thekkyapulliyil    | Pallissery   | 9747565727 |
+|      6 | Amritha  | Kezhakyeatheruvath | Calicut      | 2847565727 |
+|      7 | femi     | pullikal           | chavakkad    | NULL       |
+|      8 | remya    | madathil           | ponnani      | NULL       |
++--------+----------+--------------------+--------------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from customer where cus_phno is null;
++--------+----------+-------------+-----------+----------+
+| cus_id | cus_name | cus_address | cus_city  | cus_phno |
++--------+----------+-------------+-----------+----------+
+|      7 | femi     | pullikal    | chavakkad | NULL     |
+|      8 | remya    | madathil    | ponnani   | NULL     |
++--------+----------+-------------+-----------+----------+
+2 rows in set (0.00 sec)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+9.Display customer names in descending order.
+---------------------------------------------
+mysql> select cus_name from customer order by cus_name desc;
++----------+
+| cus_name |
++----------+
+| Sreya    |
+| salha    |
+| remya    |
+| Nileena  |
+| Neenu    |
+| femi     |
+| Anjana   |
+| Amritha  |
++----------+
+8 rows in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+10.Display the customer details sorted in ascending by city and descending by names.
+-----------------------------------------------------------------------------------
+
+mysql> select * from customer order by cus_city asc,cus_name desc;
++--------+----------+--------------------+--------------+------------+
+| cus_id | cus_name | cus_address        | cus_city     | cus_phno   |
++--------+----------+--------------------+--------------+------------+
+|      6 | Amritha  | Kezhakyeatheruvath | Calicut      | 2847565727 |
+|      7 | femi     | pullikal           | chavakkad    | NULL       |
+|      3 | Nileena  | kayallath house    | Kannur       | 8247565412 |
+|      4 | salha    | Vellipurath        | Kunnamagalam | 9747565427 |
+|      5 | Neenu    | Thekkyapulliyil    | Pallissery   | 9747565727 |
+|      8 | remya    | madathil           | ponnani      | NULL       |
+|      2 | Sreya    | Vadassery          | Thrissur     | 7034657885 |
+|      1 | Anjana   | Pazhikadavath      | wayanad      | 7034126856 |
++--------+----------+--------------------+--------------+------------+
+8 rows in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+11. Find the customer names start with ‘A’.
+---------------------------------------------
+
+mysql> select cus_name from customer where cus_name like 'A%';
++----------+
+| cus_name |
++----------+
+| Anjana   |
+| Amritha  |
++----------+
+2 rows in set (0.00 sec)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+12.Find the customer names who have ‘e’ or ‘a’ in them
+-------------------------------------------------------
+mysql> select cus_name from customer where cus_name like '%a%a' or cus_name like '%e%';
++----------+
+| cus_name |
++----------+
+| Anjana   |
+| Sreya    |
+| Nileena  |
+| salha    |
+| Neenu    |
+| Amritha  |
+| femi     |
+| remya    |
++----------+
+8 rows in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+13.Find the customer names who have at least 3 characters
+----------------------------------------------------------
+
+mysql> select cus_name from customer where cus_name like '___%';
++----------+
+| cus_name |
++----------+
+| Anjana   |
+| Sreya    |
+| Nileena  |
+| salha    |
+| Neenu    |
+| Amritha  |
+| femi     |
+| remya    |
++----------+
+8 rows in set (0.00 sec)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+14.List the names of customers their names have ‘r’ in second position
+*---------------------------------------------------------------------*
+mysql> select cus_name from customer where cus_name like '_r%';
++----------+
+| cus_name |
++----------+
+| Sreya    |
++----------+
+1 row in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+15.Find the customer names start with ‘a’ and are at least 3 characters in length.
+----------------------------------------------------------------------------------
+
+mysql> select cus_name from customer where cus_name like 'A__%';
++----------+
+| cus_name |
++----------+
+| Anjana   |
+| Amritha  |
++----------+
+2 rows in set (0.00 sec)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//////////////////////////////////-------------------------------------------------------------------------
+
+
+
