@@ -142,6 +142,25 @@ mysql> select * from Product where p_id in(select p_id from INVOICE1_ITEM where 
 --------------------------------------------------------------------------------------------------------------------------
 
 mysql> select distinct cus_name from customer where cus_id in (select cus_id from INVOICE1_MASTER where inv_id in (select inv_id from INVOICE1_ITEM group by inv_id having count(*)>2)); //WRONG QUERY
+
+mysql> select * from INVOICE1_ITEM;
++--------+------+----------+
+| inv_id | p_id | quantity |
++--------+------+----------+
+|      1 |    1 |        2 |
+|    102 |    4 |        2 |
+|    103 |    6 |        3 |
+|    104 |    1 |        5 |
+|    104 |    7 |        2 |
+|    106 |    2 |        3 |
+|    106 |    4 |        3 |
+|    104 |    2 |        1 |
+|    104 |    4 |        3 |
+|    103 |    2 |        1 |
+|    103 |    5 |        2 |
++--------+------+----------+
+11 rows in set (0.00 sec)
+
 +----------+
 | cus_name |
 +----------+
