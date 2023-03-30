@@ -1,0 +1,48 @@
+                                     
+                                                   EXPERIMENT NO: 1.6 ACCESSING DATABASES: (VIEWS)
+                                              *******************************************************
+                                              
+1.Create a view for customers who have purchased products.
+************************************************************
+
+mysql> create view cus_dep as select * from customer where cus_id in(select cus_id from INVOICE1_MASTER);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> select * from cus_dep;
++--------+----------+--------------------+--------------+------------+
+| cus_id | cus_name | cus_address        | cus_city     | cus_phno   |
++--------+----------+--------------------+--------------+------------+
+|      1 | Anjana   | Pazhikadavath      | wayanad      | 7034126856 |
+|      3 | Nileena  | kayallath house    | Kannur       | 8247565412 |
+|      4 | salha    | Vellipurath        | Kunnamagalam | 9747565427 |
+|      5 | Neenu    | Thekkyapulliyil    | Pallissery   | 9747565727 |
+|      6 | Amritha  | Kezhakyeatheruvath | Calicut      | 2847565727 |
++--------+----------+--------------------+--------------+------------+
+5 rows in set (0.00 sec)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+2.Create a view for invoice products[cust_name, , inv_id, product_id, quantity]
+*********************************************************************************
+
+mysql> create view INVOICE1_PRODUCT as select customer.cus_name,INVOICE1_MASTER.inv_id,Product.p_id,INVOICE1_ITEM.quantity from customer inner join INVOICE1_MASTER on customer.cus_id=INVOICE1_MASTER.cus_id inner join INVOICE1_ITEM on INVOICE1_MASTER.inv_id=INVOICE1_ITEM.inv_id inner join Product on Product.p_id=INVOICE1_ITEM.p_id;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> select  * from INVOICE1_PRODUCT;
++----------+--------+------+----------+
+| cus_name | inv_id | p_id | quantity |
++----------+--------+------+----------+
+| Anjana   |      1 |    1 |        2 |
+| Neenu    |    104 |    1 |        5 |
+| Amritha  |    106 |    2 |        3 |
+| Neenu    |    104 |    2 |        1 |
+| salha    |    103 |    2 |        1 |
+| Nileena  |    102 |    4 |        2 |
+| Amritha  |    106 |    4 |        3 |
+| Neenu    |    104 |    4 |        3 |
+| salha    |    103 |    5 |        2 |
+| salha    |    103 |    6 |        3 |
+| Neenu    |    104 |    7 |        2 |
++----------+--------+------+----------+
+11 rows in set (0.00 sec)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
