@@ -141,7 +141,7 @@ mysql> select * from Product where p_id in(select p_id from INVOICE1_ITEM where 
 7.List the names of all customers who have purchased at least 2 products, make sure that no duplicate names in the result.
 --------------------------------------------------------------------------------------------------------------------------
 
-mysql> select distinct cus_name from customer where cus_id in (select cus_id from INVOICE1_MASTER where inv_id in (select inv_id from INVOICE1_ITEM group by inv_id having count(*)>2));
+mysql> select distinct cus_name from customer where cus_id in (select cus_id from INVOICE1_MASTER where inv_id in (select inv_id from INVOICE1_ITEM group by inv_id having count(*)>2)); //WRONG QUERY
 +----------+
 | cus_name |
 +----------+
@@ -162,3 +162,5 @@ mysql> insert into INVOICE1_ITEM values(103,5,2);
 Query OK, 1 row affected (0.04 sec)
 /////////////////////////////////////////////////////////////////
 ******************************************************************************************************************************************************************************************************************************************************************************************************************
+
+//WRONG QUERY, RESUBMIT
