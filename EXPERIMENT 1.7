@@ -1,5 +1,145 @@
                                                        EXPERIMENT 1.7
                                                     ********************
 
-1.List product name, price except soap on price order. 
+1.List product name, price except pen on price order. 
 ------------------------------------------------------
+
+
+mysql> select * from Product;
++------+------------+-------+
+| p_id | pname      | price |
++------+------------+-------+
+|    1 | Pen        |    31 |
+|    2 | Bag        |   969 |
+|    3 | Umberalla  |   398 |
+|    4 | Bottle     |   153 |
+|    5 | Chappal    |   326 |
+|    6 | Tiffin box |   122 |
+|    7 | Pencil box |   102 |
++------+------------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select pname,price from Product where pname!='Pen' order by price asc; 
++------------+-------+
+| pname      | price |
++------------+-------+
+| Pencil box |   102 |
+| Tiffin box |   122 |
+| Bottle     |   153 |
+| Chappal    |   326 |
+| Umberalla  |   398 |
+| Bag        |   969 |
++------------+-------+
+6 rows in set (0.00 sec)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2.Find minimum, maximum and average price of products.
+********************************************************
+
+mysql> select * from Product;
++------+------------+-------+
+| p_id | pname      | price |
++------+------------+-------+
+|    1 | Pen        |    31 |
+|    2 | Bag        |   969 |
+|    3 | Umberalla  |   398 |
+|    4 | Bottle     |   153 |
+|    5 | Chappal    |   326 |
+|    6 | Tiffin box |   122 |
+|    7 | Pencil box |   102 |
++------+------------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select min(price),max(price),avg(price) from Product;
++------------+------------+------------+
+| min(price) | max(price) | avg(price) |
++------------+------------+------------+
+|         31 |        969 |   300.1429 |
++------------+------------+------------+
+1 row in set (0.00 sec)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3.Find number of customers in each city.
+****************************************
+mysql> select * from customer;
++--------+----------+--------------------+--------------+------------+
+| cus_id | cus_name | cus_address        | cus_city     | cus_phno   |
++--------+----------+--------------------+--------------+------------+
+|      1 | Anjana   | Pazhikadavath      | wayanad      | 7034126856 |
+|      2 | Sreya    | Vadassery          | Thrissur     | 7034657885 |
+|      3 | Nileena  | kayallath house    | Kannur       | 8247565412 |
+|      4 | salha    | Vellipurath        | Kunnamagalam | 9747565427 |
+|      5 | Neenu    | Thekkyapulliyil    | Pallissery   | 9747565727 |
+|      6 | Amritha  | Kezhakyeatheruvath | Calicut      | 2847565727 |
+|      7 | femi     | pullikal           | chavakkad    | NULL       |
+|      8 | remya    | madathil           | ponnani      | NULL       |
+|      9 | maya     | pallath            | Thrissur     | 7012423659 |
++--------+----------+--------------------+--------------+------------+
+9 rows in set (0.00 sec)
+
+mysql> select count(*),cus_city from customer group by cus_city;
++----------+--------------+
+| count(*) | cus_city     |
++----------+--------------+
+|        1 | Calicut      |
+|        1 | chavakkad    |
+|        1 | Kannur       |
+|        1 | Kunnamagalam |
+|        1 | Pallissery   |
+|        1 | ponnani      |
+|        2 | Thrissur     |
+|        1 | wayanad      |
++----------+--------------+
+8 rows in set (0.00 sec)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4.Find number of customers in each city, only include city with more than 3 customers.
+-------------------------------------------------------------------------------------------
+
+mysql> select * from customer;
++--------+----------+--------------------+--------------+------------+
+| cus_id | cus_name | cus_address        | cus_city     | cus_phno   |
++--------+----------+--------------------+--------------+------------+
+|      1 | Anjana   | Pazhikadavath      | wayanad      | 7034126856 |
+|      2 | Sreya    | Vadassery          | Thrissur     | 7034657885 |
+|      3 | Nileena  | kayallath house    | Kannur       | 8247565412 |
+|      4 | salha    | Vellipurath        | Kunnamagalam | 9747565427 |
+|      5 | Neenu    | Thekkyapulliyil    | Pallissery   | 9747565727 |
+|      6 | Amritha  | Kezhakyeatheruvath | Calicut      | 2847565727 |
+|      7 | femi     | pullikal           | chavakkad    | NULL       |
+|      8 | remya    | madathil           | ponnani      | NULL       |
+|      9 | maya     | pallath            | Thrissur     | 7012423659 |
+|     10 | vini     | pallathod          | Thrissur     | 7012423657 |
++--------+----------+--------------------+--------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select count(*),cus_city from customer group by cus_city having count(*)>2;
++----------+----------+
+| count(*) | cus_city |
++----------+----------+
+|        3 | Thrissur |
++----------+----------+
+1 row in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5.Show data as displayed ‘who, where’ Eg: ‘customer1 lives in ekm
+******************************************************************
+
+mysql> SELECT CONCAT(cus_name," LIVES IN ",cus_city) as cus_info from customer;
++-----------------------------+
+| cus_info                    |
++-----------------------------+
+| Anjana LIVES IN wayanad     |
+| Sreya LIVES IN Thrissur     |
+| Nileena LIVES IN Kannur     |
+| salha LIVES IN Kunnamagalam |
+| Neenu LIVES IN Pallissery   |
+| Amritha LIVES IN Calicut    |
+| femi LIVES IN chavakkad     |
+| remya LIVES IN ponnani      |
+| maya LIVES IN Thrissur      |
+| vini LIVES IN Thrissur      |
++-----------------------------+
+10 rows in set (0.00 sec)
