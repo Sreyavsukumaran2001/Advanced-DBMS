@@ -140,6 +140,21 @@ mysql> select * from Product where p_id in(select p_id from INVOICE1_ITEM where 
 
 7.List the names of all customers who have purchased at least 2 products, make sure that no duplicate names in the result.
 --------------------------------------------------------------------------------------------------------------------------
+mysql> select * from customer;
++--------+----------+--------------------+--------------+------------+
+| cus_id | cus_name | cus_address        | cus_city     | cus_phno   |
++--------+----------+--------------------+--------------+------------+
+|      1 | Anjana   | Pazhikadavath      | wayanad      | 7034126856 |
+|      2 | Sreya    | Vadassery          | Thrissur     | 7034657885 |
+|      3 | Nileena  | kayallath house    | Kannur       | 8247565412 |
+|      4 | salha    | Vellipurath        | Kunnamagalam | 9747565427 |
+|      5 | Neenu    | Thekkyapulliyil    | Pallissery   | 9747565727 |
+|      6 | Amritha  | Kezhakyeatheruvath | Calicut      | 2847565727 |
+|      7 | femi     | pullikal           | chavakkad    | NULL       |
+|      8 | remya    | madathil           | ponnani      | NULL       |
++--------+----------+--------------------+--------------+------------+
+8 rows in set (0.00 sec)
+
 
 mysql> select distinct cus_name from customer where cus_id in (select cus_id from INVOICE1_MASTER where inv_id in (select inv_id from INVOICE1_ITEM group by inv_id having count(*)>2)); //WRONG QUERY
 
