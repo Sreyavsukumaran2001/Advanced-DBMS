@@ -1,0 +1,163 @@
+                                               EXPERIMENT-1.9
+                                            --------------------
+mysql> select * from customer;
++--------+----------+--------------------+--------------+------------+
+| cus_id | cus_name | cus_address        | cus_city     | cus_phno   |
++--------+----------+--------------------+--------------+------------+
+|      1 | Anjana   | Pazhikadavath      | wayanad      | 7034126856 |
+|      2 | Sreya    | Vadassery          | Thrissur     | 7034657885 |
+|      3 | Nileena  | kayallath house    | Kannur       | 8247565412 |
+|      4 | salha    | Vellipurath        | Kunnamagalam | 9747565427 |
+|      5 | Neenu    | Thekkyapulliyil    | Pallissery   | 9747565727 |
+|      6 | Amritha  | Kezhakyeatheruvath | Calicut      | 2847565727 |
+|      7 | femi     | pullikal           | chavakkad    | NULL       |
+|      8 | remya    | madathil           | ponnani      | NULL       |
+|      9 | maya     | pallath            | Thrissur     | 7012423659 |
+|     10 | vini     | pallathod          | Thrissur     | 7012423657 |
++--------+----------+--------------------+--------------+------------+
+10 rows in set (0.02 sec) 
+
+mysql> select * from Product;
++------+------------+-------+
+| p_id | pname      | price |
++------+------------+-------+
+|    1 | Pen        |    31 |
+|    2 | Bag        |   969 |
+|    3 | Umberalla  |   398 |
+|    4 | Bottle     |   153 |
+|    5 | Chappal    |   326 |
+|    6 | Tiffin box |   122 |
+|    7 | Pencil box |   102 |
++------+------------+-------+
+7 rows in set (0.03 sec)
+
+
+1.Display customer_id, city  who lives either in ‘Calicut’ or in ‘Thrissur’
+-------------------------------------------------------------------
+
+mysql> select cus_id ,cus_city from customer where cus_city="Calicut" or cus_city="Thrissur";
++--------+----------+
+| cus_id | cus_city |
++--------+----------+
+|      2 | Thrissur |
+|      6 | Calicut  |
+|      9 | Thrissur |
+|     10 | Thrissur |
++--------+----------+
+4 rows in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2.Display product details with an updated price amount(new price= old price+5rs)
+---------------------------------------------------------------------------------
+
+mysql> mysql> * from Product;
++------+------------+-------+
+| p_id | pname      | price |
++------+------------+-------+
+|    1 | Pen        |    31 |
+|    2 | Bag        |   969 |
+|    3 | Umberalla  |   398 |
+|    4 | Bottle     |   153 |
+|    5 | Chappal    |   326 |
+|    6 | Tiffin box |   122 |
+|    7 | Pencil box |   102 |
++------+------------+-------+
+7 rows in set (0.00 sec)
+
+mysql> update Product set price=price+5;
+Query OK, 7 rows affected (0.06 sec)
+Rows matched: 7  Changed: 7  Warnings: 0
+
+mysql> select * from Product;
++------+------------+-------+
+| p_id | pname      | price |
++------+------------+-------+
+|    1 | Pen        |    36 |
+|    2 | Bag        |   974 |
+|    3 | Umberalla  |   403 |
+|    4 | Bottle     |   158 |
+|    5 | Chappal    |   331 |
+|    6 | Tiffin box |   127 |
+|    7 | Pencil box |   107 |
++------+------------+-------+
+7 rows in set (0.00 sec)
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3.Display customer details who doesn’t have phone number and lives in ‘Calicut’ city (use logical operators)
+*-------------------------------------------------------------------------------------------------------------*
+
+mysql> select * from customer;
++--------+----------+--------------------+--------------+------------+
+| cus_id | cus_name | cus_address        | cus_city     | cus_phno   |
++--------+----------+--------------------+--------------+------------+
+|      1 | Anjana   | Pazhikadavath      | wayanad      | 7034126856 |
+|      2 | Sreya    | Vadassery          | Thrissur     | 7034657885 |
+|      3 | Nileena  | kayallath house    | Kannur       | 8247565412 |
+|      4 | salha    | Vellipurath        | Kunnamagalam | 9747565427 |
+|      5 | Neenu    | Thekkyapulliyil    | Pallissery   | 9747565727 |
+|      6 | Amritha  | Kezhakyeatheruvath | Calicut      | 2847565727 |
+|      7 | femi     | pullikal           | chavakkad    | NULL       |
+|      8 | remya    | madathil           | ponnani      | NULL       |
+|      9 | maya     | pallath            | Thrissur     | 7012423659 |
+|     10 | vini     | pallathod          | Thrissur     | 7012423657 |
++--------+----------+--------------------+--------------+------------+
+
+mysql> select * from customer where cus_phno is null and cus_city="Ponnani";
+
++--------+----------+-------------+----------+----------+
+| cus_id | cus_name | cus_address | cus_city | cus_phno |
++--------+----------+-------------+----------+----------+
+|      8 | remya    | madathil    | ponnani  | NULL     |
++--------+----------+-------------+----------+----------+
+1 row in set (0.00 sec)
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4.List the product names if it finds any records in the invoice items table has quantity =3 (use special operators)
+---------------------------------------------------------------------------------------------------------------------
+
+mysql> select * from Product;
++------+------------+-------+
+| p_id | pname      | price |
++------+------------+-------+
+|    1 | Pen        |    36 |
+|    2 | Bag        |   974 |
+|    3 | Umberalla  |   403 |
+|    4 | Bottle     |   158 |
+|    5 | Chappal    |   331 |
+|    6 | Tiffin box |   127 |
+|    7 | Pencil box |   107 |
++------+------------+-------+
+7 rows in set (0.00 sec)
+
+
+mysql> select * from INVOICE1_ITEM;
++--------+------+----------+
+| inv_id | p_id | quantity |
++--------+------+----------+
+|      1 |    1 |        2 |
+|    102 |    4 |        2 |
+|    103 |    6 |        3 |
+|    104 |    1 |        5 |
+|    104 |    7 |        2 |
+|    106 |    2 |        3 |
+|    106 |    4 |        3 |
+|    104 |    2 |        1 |
+|    104 |    4 |        3 |
+|    103 |    2 |        1 |
+|    103 |    5 |        2 |
++--------+------+----------+
+11 rows in set (0.00 sec)
+
+mysql> select pname from Product where p_id in(select p_id from INVOICE1_ITEM where quantity=3);
++------------+
+| pname      |
++------------+
+| Tiffin box |
+| Bag        |
+| Bottle     |
++------------+
+3 rows in set (0.03 sec)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------****************************************----------------------------*******************************-------------------------------------
+
+
