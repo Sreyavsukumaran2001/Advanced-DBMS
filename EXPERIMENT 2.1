@@ -1,0 +1,144 @@
+                                                 EXPERIMENT 2.1 PL/SQL PROGRAMES
+                                              ----------------------------------------
+                                              
+                                              
+1.Create a procedure to display all tables in the invoice database.
+-----------------------------------------------------------------
+
+mysql> delimiter //
+mysql> create procedure INVOICE1_tables()
+    -> begin
+    -> select * from Product;
+    -> select * from INVOICE1_ITEM;
+    -> select * from INVOICE1_MASTER;
+    -> select * from customer;
+    -> end
+    -> //
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> call INVOICE1_tables();
+    -> //
++------+------------+-------+
+| p_id | pname      | price |
++------+------------+-------+
+|    1 | Pen        |    36 |
+|    2 | Bag        |   974 |
+|    3 | Umberalla  |   403 |
+|    4 | Bottle     |   158 |
+|    5 | Chappal    |   331 |
+|    6 | Tiffin box |   127 |
+|    7 | Pencil box |   107 |
++------+------------+-------+
+7 rows in set (0.00 sec)
+
++--------+------+----------+
+| inv_id | p_id | quantity |
++--------+------+----------+
+|      1 |    1 |        2 |
+|    102 |    4 |        2 |
+|    103 |    6 |        3 |
+|    104 |    1 |        5 |
+|    104 |    7 |        2 |
+|    106 |    2 |        3 |
+|    106 |    4 |        3 |
+|    104 |    2 |        1 |
+|    104 |    4 |        3 |
+|    103 |    2 |        1 |
+|    103 |    5 |        2 |
++--------+------+----------+
+11 rows in set (0.00 sec)
+
++--------+--------+------------+
+| inv_id | cus_id | inv_date   |
++--------+--------+------------+
+|      1 |      1 | 2023-01-01 |
+|    102 |      3 | 2023-03-08 |
+|    103 |      4 | 2022-12-05 |
+|    104 |      5 | 2022-12-31 |
+|    106 |      6 | 2022-11-29 |
+|    107 |      5 | 2022-11-12 |
+|    108 |      4 | 2022-10-12 |
++--------+--------+------------+
+7 rows in set (0.00 sec)
+
++--------+----------+--------------------+--------------+------------+
+| cus_id | cus_name | cus_address        | cus_city     | cus_phno   |
++--------+----------+--------------------+--------------+------------+
+|      1 | Anjana   | Pazhikadavath      | wayanad      | 7034126856 |
+|      2 | Sreya    | Vadassery          | Thrissur     | 7034657885 |
+|      3 | Nileena  | kayallath house    | Kannur       | 8247565412 |
+|      4 | salha    | Vellipurath        | Kunnamagalam | 9747565427 |
+|      5 | Neenu    | Thekkyapulliyil    | Pallissery   | 9747565727 |
+|      6 | Amritha  | Kezhakyeatheruvath | Calicut      | 2847565727 |
+|      7 | femi     | pullikal           | chavakkad    | NULL       |
+|      8 | remya    | madathil           | ponnani      | NULL       |
+|      9 | maya     | pallath            | Thrissur     | 7012423659 |
+|     10 | vini     | pallathod          | Thrissur     | 7012423657 |
++--------+----------+--------------------+--------------+------------+
+10 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+2.Create a procedure to find greatest of 3 numbers.
+---------------------------------------------------
+
+
+mysql> delimiter //
+mysql> create procedure greatest(a int,b int,c int)
+    -> begin
+    -> if(a>b) and (a>c) then
+    -> select a as 'Greatest';
+    -> elseif (b>a) and (b>c) then
+    -> select b as 'Greatest';
+    -> else
+    -> select c as 'Greatest';
+    -> end if;
+    -> end
+    -> //
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call greatest(5,9,3)
+    -> //
++----------+
+| Greatest |
++----------+
+|        9 |
++----------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3.Create a procedure to display invoice details of a particular customer.
+---------------------------------------------------------------------------
+
+mysql> delimiter //
+mysql> create procedure inv_detail(a varchar(10))
+    -> begin
+    -> select inv_id,inv_date,price,quantity from customer
+    -> natural join INVOICE1_MASTER
+    -> natural join INVOICE1_ITEM
+    -> natural join Product
+    -> where cus_name=a;
+    -> end
+    -> //
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call inv_detail('Amritha')
+    -> //
++--------+------------+-------+----------+
+| inv_id | inv_date   | price | quantity |
++--------+------------+-------+----------+
+|    106 | 2022-11-29 |   974 |        3 |
+|    106 | 2022-11-29 |   158 |        3 |
++--------+------------+-------+----------+
+2 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
