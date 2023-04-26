@@ -1,0 +1,119 @@
+                                         EXPERIMENT NO: 2.3	-PL/SQL PROGRAMS – TRIGGER
+                                       --------------------------------------------------
+                                       
+1. Create a trigger to handle updates to the customer table.
+-------------------------------------------------------------
+
+mysql> DELIMITER //
+mysql> create table customer_1(id int,name varchar(15),address varchar(15),city varchar(25),phno bigint);
+    -> //
+Query OK, 0 rows affected (0.19 sec)
+
+mysql> create trigger updaters 
+before update on customer 
+for each row begin
+insert into customer_1 values(old.cus_id,old.cus_name,old.cus_address,old.cus_city,old.cus_phno); 
+end//
+Query OK, 0 rows affected (0.07 sec)
+mysql> select * from customer;
+    -> //
++--------+----------+--------------------+--------------+------------+
+| cus_id | cus_name | cus_address        | cus_city     | cus_phno   |
++--------+----------+--------------------+--------------+------------+
+|      1 | Anjana   | Pazhikadavath      | wayanad      | 7034126856 |
+|      2 | Sreya    | Vadassery          | Thrissur     | 7034657885 |
+|      3 | Nileena  | kayallath house    | Kannur       | 8247565412 |
+|      4 | salha    | Vellipurath        | Kunnamagalam | 9747565427 |
+|      5 | Neenu    | Thekkyapulliyil    | Pallissery   | 9747565727 |
+|      6 | Amritha  | Kezhakyeatheruvath | Calicut      | 2847565727 |
+|      7 | femi     | pullikal           | chavakkad    | NULL       |
+|      8 | remya    | madathil           | ponnani      | NULL       |
+|      9 | maya     | pallath            | Thrissur     | 7012423659 |
+|     10 | vini     | pallathod          | Thrissur     | 7012423657 |
++--------+----------+--------------------+--------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> update customer set cus_city="palakkad" where cus_id=8;
+    -> //
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from customer_1;
+    -> //
++------+-------+----------+---------+------+
+| id   | name  | address  | city    | phno |
++------+-------+----------+---------+------+
+|    8 | remya | madathil | ponnani | NULL |
++------+-------+----------+---------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from customer;
+    -> //
++--------+----------+--------------------+--------------+------------+
+| cus_id | cus_name | cus_address        | cus_city     | cus_phno   |
++--------+----------+--------------------+--------------+------------+
+|      1 | Anjana   | Pazhikadavath      | wayanad      | 7034126856 |
+|      2 | Sreya    | Vadassery          | Thrissur     | 7034657885 |
+|      3 | Nileena  | kayallath house    | Kannur       | 8247565412 |
+|      4 | salha    | Vellipurath        | Kunnamagalam | 9747565427 |
+|      5 | Neenu    | Thekkyapulliyil    | Pallissery   | 9747565727 |
+|      6 | Amritha  | Kezhakyeatheruvath | Calicut      | 2847565727 |
+|      7 | femi     | pullikal           | chavakkad    | NULL       |
+|      8 | remya    | madathil           | palakkad     | NULL       |
+|      9 | maya     | pallath            | Thrissur     | 7012423659 |
+|     10 | vini     | pallathod          | Thrissur     | 7012423657 |
++--------+----------+--------------------+--------------+------------+
+10 rows in set (0.00 sec)
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2.Create a trigger to handle inserts to the product relation ( if price < 5 the set price to 10)
+-------------------------------------------------------------------------------------------------
+mysql> delimiter //
+mysql> create trigger product_price
+    -> before insert
+    -> on Product
+    -> for each row
+    -> begin
+    -> if new.price < 5 then
+    -> set new.price=10;
+    -> end if;
+    -> end
+    -> //
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> select * from Product;
+    -> //
++------+------------+-------+
+| p_id | pname      | price |
++------+------------+-------+
+|    1 | Pen        |    36 |
+|    2 | Bag        |   974 |
+|    3 | Umberalla  |   403 |
+|    4 | Bottle     |   158 |
+|    5 | Chappal    |   331 |
+|    6 | Tiffin box |   127 |
+|    7 | Pencil box |   107 |
++------+------------+-------+
+7 rows in set (0.00 sec)
+
+mysql> INSERT INTO Product values(108,'pencil',4);
+    -> //
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from Product;
+    -> //
++------+------------+-------+
+| p_id | pname      | price |
++------+------------+-------+
+|    1 | Pen        |    36 |
+|    2 | Bag        |   974 |
+|    3 | Umberalla  |   403 |
+|    4 | Bottle     |   158 |
+|    5 | Chappal    |   331 |
+|    6 | Tiffin box |   127 |
+|    7 | Pencil box |   107 |
+|  108 | pencil     |    10 |
++------+------------+-------+
+8 rows in set (0.00 sec)
+
+------------------------------------------------*****************************************************************************------------------------------
