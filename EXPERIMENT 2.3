@@ -11,7 +11,8 @@ Query OK, 0 rows affected (0.19 sec)
 
 mysql> create trigger updaters 
 before update on customer 
-for each row begin
+for each row 
+begin
 insert into customer_1 values(old.cus_id,old.cus_name,old.cus_address,old.cus_city,old.cus_phno); 
 end//
 Query OK, 0 rows affected (0.07 sec)
