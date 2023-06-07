@@ -1,0 +1,114 @@
+                                                  EXPERIMENT NO:3.0    NOSQL CRUD
+                                                 ------------------------------------
+  1. Write a MongoDB query to create an INVOICE database and collections (CUSTOMER, PRODUCT) and its corresponding documents.   
+  > use invoice
+switched to db invoice
+> db.customer.insert({"Name":"Ram","city":"BANGALORE","phno":"9747565425","age":20})
+Wrdb.customer.insert({"Name":"Seetha","city":"Delhi","phno":"9846463007","age":20})
+WriteResult({ "nInserted" : 1 })
+> db.customer.insert({"Name":"Tom","city":"London","phno":"7034657885","age":22})
+WriteResult({ "nInserted" : 1 })
+> db.customer.insert({"Name":"Jerry","city":"London","phno":"8281317602","age":21})
+WriteResult({ "nInserted" : 1 })
+> db.customer.insert({"Name":"Roy","city":"America","phno":"8281314602","age":23})
+WriteResult({ "nInserted" : 1 })
+> db.product.insertMany([{"pname":"eraser","price":"3"}, {"pname":"box","price":"35"}, {"pname":"pencil","price":"5"}, {"pname":"book","price":"15"}]
+... )
+
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("64804ae11859380d8e5fdc9d"),
+		ObjectId("64804ae11859380d8e5fdc9e"),
+		ObjectId("64804ae11859380d8e5fdc9f"),
+		ObjectId("64804ae11859380d8e5fdca0")
+	]
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+2.Write a MongoDB query to find all documents from the collection CUSTOMER
+
+{
+	"_id" : ObjectId("6480489a1859380d8e5fdc96"),
+	"Name" : "Ram",
+	"city" : "BANGALORE",
+	"phno" : "9747565425",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("648049061859380d8e5fdc97"),
+	"Name" : "Seetha",
+	"city" : "Delhi",
+	"phno" : "9846463007",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("648049381859380d8e5fdc98"),
+	"Name" : "Tom",
+	"city" : "London",
+	"phno" : "7034657885",
+	"age" : 22
+}
+{
+	"_id" : ObjectId("648049701859380d8e5fdc99"),
+	"Name" : "Seetha",
+	"city" : "Delhi",
+	"phno" : "9846463007",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("648049751859380d8e5fdc9a"),
+	"Name" : "Tom",
+	"city" : "London",
+	"phno" : "7034657885",
+	"age" : 22
+}
+{
+	"_id" : ObjectId("6480499a1859380d8e5fdc9b"),
+	"Name" : "Jerry",
+	"city" : "London",
+	"phno" : "8281317602",
+	"age" : 21
+}
+{
+	"_id" : ObjectId("648049bc1859380d8e5fdc9c"),
+	"Name" : "Roy",
+	"city" : "America",
+	"phno" : "8281314602",
+	"age" : 23
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3.Write a MongoDB query to update the city in the collection CUSTOMER.
+
+{
+	"_id" : ObjectId("648049bc1859380d8e5fdc9c"),
+	"Name" : "Roy",
+	"city" : "America",
+	"phno" : "8281314602",
+	"age" : 23
+}
+---------------------------------------------------------------
+> db.customer.update({city:"America"},{$set:{city:"Hyderbad"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.customer.findOne({city:"Hyderbad"})
+{
+	"_id" : ObjectId("648049bc1859380d8e5fdc9c"),
+	"Name" : "Roy",
+	"city" : "Hyderbad",
+	"phno" : "8281314602",
+	"age" : 23
+}
+---4------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4.Write a MongoDB query to delete the first matched document whose city is “delhi”.
+
+> db.customer.deleteOne({city:"London"})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.customer.find()
+{ "_id" : ObjectId("6480489a1859380d8e5fdc96"), "Name" : "Ram", "city" : "BANGALORE", "phno" : "9747565425", "age" : 20 }
+{ "_id" : ObjectId("648049701859380d8e5fdc99"), "Name" : "Seetha", "city" : "Delhi", "phno" : "9846463007", "age" : 20 }
+{ "_id" : ObjectId("648049751859380d8e5fdc9a"), "Name" : "Tom", "city" : "London", "phno" : "7034657885", "age" : 22 }
+{ "_id" : ObjectId("6480499a1859380d8e5fdc9b"), "Name" : "Jerry", "city" : "London", "phno" : "8281317602", "age" : 21 }
+{ "_id" : ObjectId("648049bc1859380d8e5fdc9c"), "Name" : "Roy", "city" : "Hyderbad", "phno" : "8281314602", "age" : 23 }
+*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
