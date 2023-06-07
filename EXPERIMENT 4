@@ -1,0 +1,82 @@
+                                                            EXPERIMENT 4: RETRIEVING DATA
+                                                        --------------------------------------
+                                                        
+ 1.Write a MongoDB query to display the customer documents having city ‘London’,’America’.
+ 
+ > db.customer.find({$or:[{"city":"London"},{"city":"Hyderbad"}]}).pretty();
+{
+	"_id" : ObjectId("648049751859380d8e5fdc9a"),
+	"Name" : "Tom",
+	"city" : "London",
+	"phno" : "7034657885",
+	"age" : 22
+}
+{
+	"_id" : ObjectId("6480499a1859380d8e5fdc9b"),
+	"Name" : "Jerry",
+	"city" : "London",
+	"phno" : "8281317602",
+	"age" : 21
+}
+{
+	"_id" : ObjectId("648049bc1859380d8e5fdc9c"),
+	"Name" : "Roy",
+	"city" : "Hyderbad",
+	"phno" : "8281314602",
+	"age" : 23
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2.Write a MongoDB query to display all customer documents who have age >50.
+
+> db.customer.find({"age":{$gt:21}}).pretty();
+{
+	"_id" : ObjectId("648049751859380d8e5fdc9a"),
+	"Name" : "Tom",
+	"city" : "London",
+	"phno" : "7034657885",
+	"age" : 22
+}
+{
+	"_id" : ObjectId("648049bc1859380d8e5fdc9c"),
+	"Name" : "Roy",
+	"city" : "Hyderbad",
+	"phno" : "8281314602",
+	"age" : 23
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3. Write a MongoDB query to find customer documents who not live in ‘Hyderbad’.
+
+
+> db.customer.find({"city":{$ne:"Hyderbad"}}).pretty();
+{
+	"_id" : ObjectId("6480489a1859380d8e5fdc96"),
+	"Name" : "Ram",
+	"city" : "BANGALORE",
+	"phno" : "9747565425",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("648049701859380d8e5fdc99"),
+	"Name" : "Seetha",
+	"city" : "Delhi",
+	"phno" : "9846463007",
+	"age" : 20
+}
+{
+	"_id" : ObjectId("648049751859380d8e5fdc9a"),
+	"Name" : "Tom",
+	"city" : "London",
+	"phno" : "7034657885",
+	"age" : 22
+}
+{
+	"_id" : ObjectId("6480499a1859380d8e5fdc9b"),
+	"Name" : "Jerry",
+	"city" : "London",
+	"phno" : "8281317602",
+	"age" : 21
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
