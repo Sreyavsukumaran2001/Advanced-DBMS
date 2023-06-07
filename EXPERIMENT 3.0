@@ -28,7 +28,7 @@ WriteResult({ "nInserted" : 1 })
 
 
 2.Write a MongoDB query to find all documents from the collection CUSTOMER
-
+> db.customer.find().pretty()
 {
 	"_id" : ObjectId("6480489a1859380d8e5fdc96"),
 	"Name" : "Ram",
