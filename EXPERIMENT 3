@@ -37,20 +37,6 @@ WriteResult({ "nInserted" : 1 })
 	"age" : 20
 }
 {
-	"_id" : ObjectId("648049061859380d8e5fdc97"),
-	"Name" : "Seetha",
-	"city" : "Delhi",
-	"phno" : "9846463007",
-	"age" : 20
-}
-{
-	"_id" : ObjectId("648049381859380d8e5fdc98"),
-	"Name" : "Tom",
-	"city" : "London",
-	"phno" : "7034657885",
-	"age" : 22
-}
-{
 	"_id" : ObjectId("648049701859380d8e5fdc99"),
 	"Name" : "Seetha",
 	"city" : "Delhi",
@@ -74,10 +60,10 @@ WriteResult({ "nInserted" : 1 })
 {
 	"_id" : ObjectId("648049bc1859380d8e5fdc9c"),
 	"Name" : "Roy",
-	"city" : "America",
+	"city" : "Hyderbad",
 	"phno" : "8281314602",
 	"age" : 23
-}
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 3.Write a MongoDB query to update the city in the collection CUSTOMER.
 
