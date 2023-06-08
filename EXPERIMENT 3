@@ -87,14 +87,14 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 }
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 4.Write a MongoDB query to delete the first matched document whose city is “delhi”.
-
-> db.customer.deleteOne({city:"London"})
+>  db.customer.deleteOne({city:"London"})
 { "acknowledged" : true, "deletedCount" : 1 }
 > db.customer.find()
 { "_id" : ObjectId("6480489a1859380d8e5fdc96"), "Name" : "Ram", "city" : "BANGALORE", "phno" : "9747565425", "age" : 20 }
 { "_id" : ObjectId("648049701859380d8e5fdc99"), "Name" : "Seetha", "city" : "Delhi", "phno" : "9846463007", "age" : 20 }
-{ "_id" : ObjectId("648049751859380d8e5fdc9a"), "Name" : "Tom", "city" : "London", "phno" : "7034657885", "age" : 22 }
 { "_id" : ObjectId("6480499a1859380d8e5fdc9b"), "Name" : "Jerry", "city" : "London", "phno" : "8281317602", "age" : 21 }
 { "_id" : ObjectId("648049bc1859380d8e5fdc9c"), "Name" : "Roy", "city" : "Hyderbad", "phno" : "8281314602", "age" : 23 }
+
+
 *--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
