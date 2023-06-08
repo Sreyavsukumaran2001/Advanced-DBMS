@@ -1,6 +1,6 @@
                                                   EXPERIMENT NO:3.0    NOSQL CRUD
                                                  ------------------------------------  
-  1. Write a MongoDB query to create an INVOICE database and collections (CUSTOMER, PRODUCT) and its corresponding documents.   
+  1. Write a MongoDB query to create an INVOICE database and collections (CUSTOMER, PRODUCT) and its corresponding documents.    
   > use invoice
 switched to db invoice
 > db.customer.insert({"Name":"Ram","city":"BANGALORE","phno":"9747565425","age":20})
