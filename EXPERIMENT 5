@@ -1,0 +1,30 @@
+                                              Assignment 5: NoSQL – AGGREGATE FUNCTIONS AND REGULAR EXPRESSIONS
+                                           -------------------------------------------------------------------------
+                                           
+1.Write a MongoDB query to sort customer details in ascending order of their name.
+> db.customer.find().sort({Name:1})
+
+{ "_id" : ObjectId("6480499a1859380d8e5fdc9b"), "Name" : "Jerry", "city" : "London", "phno" : "8281317602", "age" : 21 }
+{ "_id" : ObjectId("6480489a1859380d8e5fdc96"), "Name" : "Ram", "city" : "BANGALORE", "phno" : "9747565425", "age" : 20 }
+{ "_id" : ObjectId("648049bc1859380d8e5fdc9c"), "Name" : "Roy", "city" : "Hyderbad", "phno" : "8281314602", "age" : 23 }
+{ "_id" : ObjectId("648049701859380d8e5fdc99"), "Name" : "Seetha", "city" : "Delhi", "phno" : "9846463007", "age" : 20 }
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2.Write a MongoDB query to count number of customers in each city.
+
+> db.customer.aggregate([{$group:{_id:"$city",total:{$sum:1}}}])
+{ "_id" : "London", "total" : 1 }
+{ "_id" : "Delhi", "total" : 1 }
+{ "_id" : "Hyderbad", "total" : 1 }
+{ "_id" : "BANGALORE", "total" : 1 }
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3.Write a MongoDB query to find minimum and maximum age in each city.
+
+> db.customer.aggregate([{$group:{_id:"$city",max_age:{$max:"$age"},min_age:{$min:"$age"}}}])
+{ "_id" : "London", "max_age" : 21, "min_age" : 21 }
+{ "_id" : "Delhi", "max_age" : 20, "min_age" : 20 }
+{ "_id" : "Hyderbad", "max_age" : 23, "min_age" : 23 }
+{ "_id" : "BANGALORE", "max_age" : 20, "min_age" : 20 }
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
