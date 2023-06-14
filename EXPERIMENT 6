@@ -2,7 +2,7 @@
                                                  ------------------------------------------------
 
 1 Write a MongoDB query to create a user “CUSTOMER1” and grant the read role in the INVOICE database.
-
+-----------------------------------------------------------------------------------------------------
 > db.createUser({user:"Kuttu",pwd:"9876",roles:[{role:"read",db:"invoice"}]})
 Successfully added user: {
 	"user" : "Kuttu",
@@ -17,6 +17,8 @@ Successfully added user: {
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 2.Write a MongoDB query to create the backup for the INVOICE database.
+----------------------------------------------------------------------
+
 
 
 
